@@ -7,19 +7,18 @@ import session from 'express-session';
 
 
 import authRoutes from './routes/authRoutes.js';
-// import clientRoutes from './routes/clientRoutes';
+import contactRoutes from "./routes/contactRoutes.js";
+import clientRoutes from "./routes/clientRoutes.js";
 // import jobRoutes from './routes/jobRoutes';
 // import employmentRoutes from './routes/employmentRoutes';
 // import financeRoutes from './routes/financeRoutes';
 // import bankRoutes from './routes/bankRoutes';
-// import contactRoutes from './routes/contactRoutes';
 // import leadRoutes from './routes/leadRoutes';
 // import userRoutes from './routes/userRoutes';
 // import employeeRoutes from './routes/employeeRoutes';
 // import unemployedRoutes from './routes/unemployedRoutes';
 
 
-import User from './models/User.js';
 
 dotenv.config();
 
@@ -44,12 +43,12 @@ mongoose
 
 // Routes
 app.use("/api/auth", authRoutes);
-// app.use("/api/clients", clientRoutes);
+app.use("/api/contacts", contactRoutes);
+app.use("/api/clients", clientRoutes);
 // app.use("/api/jobs", jobRoutes);
 // app.use("/api/employments", employmentRoutes);
 // app.use("/api/finance", financeRoutes);
 // app.use("/banks", bankRoutes);
-// app.use("/api/contacts", contactRoutes);
 // app.use("/api/leads", leadRoutes);
 // app.use("/api/users", userRoutes);
 // app.use("/api/employees", employeeRoutes);
