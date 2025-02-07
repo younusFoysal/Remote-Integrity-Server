@@ -33,7 +33,11 @@ export const loginUser = async (req, res) => {
         }
 
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: '1h'});
-        res.json({token, user});
+
+        const userResponse = user.toObject();
+        delete userResponse.user_password;
+
+        res.json({token, userResponse});
 
     } catch (error) {
         res.status(500).json({message: 'Internal server error'});
