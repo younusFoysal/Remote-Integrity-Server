@@ -4,13 +4,22 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import passport from 'passport';
 import session from 'express-session';
-import authRoutes from './routes/authRoutes';
-import clientRoutes from './routes/clientRoutes';
-import jobRoutes from './routes/jobRoutes';
-import employmentRoutes from './routes/employmentRoutes';
-import financeRoutes from './routes/financeRoutes';
-import bankRoutes from './routes/bankRoutes';
-import User from './models/User';
+
+
+import authRoutes from './routes/authRoutes.js';
+// import clientRoutes from './routes/clientRoutes';
+// import jobRoutes from './routes/jobRoutes';
+// import employmentRoutes from './routes/employmentRoutes';
+// import financeRoutes from './routes/financeRoutes';
+// import bankRoutes from './routes/bankRoutes';
+// import contactRoutes from './routes/contactRoutes';
+// import leadRoutes from './routes/leadRoutes';
+// import userRoutes from './routes/userRoutes';
+// import employeeRoutes from './routes/employeeRoutes';
+// import unemployedRoutes from './routes/unemployedRoutes';
+
+
+import User from './models/User.js';
 
 dotenv.config();
 
@@ -24,21 +33,27 @@ app.use(session( { secret: process.env.SESSION_SESSION_SECRET, resave: false, sa
 app.use(passport.initialize());
 app.use(passport.session());
 
+const URI = process.env.MONGODB_URI;
 
 // Database Connection
 mongoose
-    .connect(process.env.MONGODB_URI
+    .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB Connected'))
-    .catch((err) => console.log(err))
-);
+    .catch((err) => console.log(err));
+
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/clients", clientRoutes);
-app.use("/api/jobs", jobRoutes);
-app.use("/api/employments", employmentRoutes);
-app.use("/api/finance", financeRoutes);
-app.use("/banks", bankRoutes);
+// app.use("/api/clients", clientRoutes);
+// app.use("/api/jobs", jobRoutes);
+// app.use("/api/employments", employmentRoutes);
+// app.use("/api/finance", financeRoutes);
+// app.use("/banks", bankRoutes);
+// app.use("/api/contacts", contactRoutes);
+// app.use("/api/leads", leadRoutes);
+// app.use("/api/users", userRoutes);
+// app.use("/api/employees", employeeRoutes);
+// app.use("/api/unemployed", unemployedRoutes);
 
 
 // Basic route
